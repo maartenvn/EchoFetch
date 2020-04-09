@@ -1,5 +1,3 @@
 import {AxiosError, AxiosResponse} from "axios";
 
-interface EchoResponse extends AxiosResponse{}
-
-export default EchoResponse;
+export interface EchoResponse extends AxiosResponse{}

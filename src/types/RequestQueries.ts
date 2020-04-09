@@ -1,3 +1,1 @@
-type RequestQueries = { [prop: string]: string };
-
-export default RequestQueries;
+export type RequestQueries = { [prop: string]: string };

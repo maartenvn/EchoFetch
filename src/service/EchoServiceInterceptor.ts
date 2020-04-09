@@ -1,8 +1,8 @@
-import EchoRequest from "../types/EchoRequest";
-import EchoResponse from "../types/EchoResponse";
-import EchoError from "../types/EchoError";
+import {EchoRequest} from "../types/EchoRequest";
+import {EchoResponse} from "../types/EchoResponse";
+import {EchoError} from "../types/EchoError";
 
-interface EchoServiceInterceptor {
+export interface EchoServiceInterceptor {
 
     /**
      * Called before sending every request.
@@ -18,9 +18,7 @@ interface EchoServiceInterceptor {
 
     /**
      * Called after every failed response.
-     * @param response
+     * @param error
      */
     onError(error: EchoError): EchoError;
 }
-
-export default EchoServiceInterceptor;

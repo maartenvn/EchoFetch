@@ -1,7 +1,7 @@
-import EchoServiceInterceptor from "./EchoServiceInterceptor";
-import EchoServiceConverter from "./EchoServiceConverter";
+import {EchoServiceInterceptor} from "./EchoServiceInterceptor";
+import {EchoServiceConverter} from "./EchoServiceConverter";
 
-export default class EchoServiceBuilder {
+export class EchoServiceBuilder {
 
     /**
      * Base URL added before every request path.

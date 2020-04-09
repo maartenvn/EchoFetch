@@ -1,4 +1,4 @@
-interface RequestQuery {
+export interface RequestQuery {
 
     /**
      * Name of the query.
@@ -10,5 +10,3 @@ interface RequestQuery {
      */
     value: string;
 }
-
-export default RequestQuery;

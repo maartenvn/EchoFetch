@@ -1,21 +1,22 @@
-import MapUtil from "../util/MapUtil";
-import ServiceMetadata from "../types/ServiceMetadata";
-import EchoServiceBuilder from "./EchoServiceBuilder";
-import RequestHeader from "../types/RequestHeader";
-import RequestHeaders from "../types/RequestHeaders";
-import RequestQueries from "../types/RequestQueries";
-import RequestQuery from "../types/RequestQuery";
-import EchoServiceInterceptor from "./EchoServiceInterceptor";
-import EchoRequest from "../types/EchoRequest";
-import EchoResponse from "../types/EchoResponse";
-import EchoServiceConverter from "./EchoServiceConverter";
-import axios, {AxiosRequestConfig, Method} from "axios";
-import RequestMethod from "../types/RequestMethod";
-import EchoError from "../types/EchoError";
-import EchoPromise, {convertToEchoPromise} from "../types/EchoPromise";
-import EchoPromiseStatus from "../types/EchoPromiseStatus";
+import axios from "axios";
+import {EchoServiceInterceptor} from "./EchoServiceInterceptor";
+import {EchoServiceConverter} from "./EchoServiceConverter";
+import {EchoServiceBuilder} from "./EchoServiceBuilder";
+import {RequestMethod} from "../types/RequestMethod";
+import {MapUtil} from "../util/MapUtil";
+import {convertToEchoPromise, EchoPromise} from "../types/EchoPromise";
+import {ServiceMetadata} from "../types/ServiceMetadata";
+import {RequestHeaders} from "../types/RequestHeaders";
+import {RequestQueries} from "../types/RequestQueries";
+import {RequestHeader} from "../types/RequestHeader";
+import {RequestQuery} from "../types/RequestQuery";
+import {AxiosRequestConfig, Method} from "axios";
+import {EchoResponse} from "../types/EchoResponse";
+import {EchoRequest} from "../types/EchoRequest";
+import {EchoPromiseStatus} from "../types/EchoPromiseStatus";
+import {EchoError} from "../types/EchoError";
 
-export default class EchoService {
+export class EchoService {
 
     /**
      * Base URL, will be joined before the path of each method in the service.

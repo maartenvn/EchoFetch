@@ -1,6 +1,6 @@
-import EchoResponse from "../types/EchoResponse";
+import {EchoResponse} from "../types/EchoResponse";
 
-interface EchoServiceConverter {
+export interface EchoServiceConverter {
 
     /**
      * Get if the converter should convert a given response.
@@ -14,5 +14,3 @@ interface EchoServiceConverter {
      */
     convert(response: EchoResponse): any;
 }
-
-export default EchoServiceConverter;

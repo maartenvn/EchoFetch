@@ -1,8 +1,8 @@
-import EchoError from "./EchoError";
-import EchoResponse from "./EchoResponse";
-import EchoPromiseStatus from "./EchoPromiseStatus";
+import {EchoPromiseStatus} from "./EchoPromiseStatus";
+import {EchoError} from "./EchoError";
+import {EchoResponse} from "./EchoResponse";
 
-interface EchoPromise<T> extends Promise<T> {
+export interface EchoPromise<T> extends Promise<T> {
 
     /**
      * Status of the request.
@@ -136,5 +136,3 @@ export function convertToEchoPromise<T>(promise: Promise<T>): EchoPromise<T> {
 
     return echoPromise;
 }
-
-export default EchoPromise;

@@ -1,5 +1,3 @@
 import {AxiosError} from "axios";
 
-interface EchoError extends AxiosError {}
-
-export default EchoError;
+export interface EchoError extends AxiosError {}

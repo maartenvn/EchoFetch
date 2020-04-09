@@ -13,10 +13,10 @@
         "sourceMap": true,
         "declaration": true,
         "declarationDir": "dist/types",
+        "outDir": "dist/lib",
         "allowSyntheticDefaultImports": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
-        "outDir": "dist/lib",
         "typeRoots": [
             "node_modules/@types"
         ]

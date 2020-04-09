@@ -1,13 +1,13 @@
-import EchoService from "../src/service/EchoService";
 import * as nock from "nock";
-import EchoServiceBuilder from "../src/service/EchoServiceBuilder";
-import GET from "../src/decorators/methods/GetDecorator";
-import EchoPromise from "../src/types/EchoPromise";
-import EchoServiceInterceptor from "../src/service/EchoServiceInterceptor";
-import EchoRequest from "../src/types/EchoRequest";
-import Headers from "../src/decorators/methods/HeadersDecorator";
-import EchoResponse from "../src/types/EchoResponse";
-import EchoError from "../src/types/EchoError";
+import {EchoService} from "../src/service/EchoService";
+import {GET} from "../src/decorators/methods/GetDecorator";
+import {EchoPromise} from "../src/types/EchoPromise";
+import {Headers} from "../src/decorators/methods/HeadersDecorator";
+import {EchoServiceBuilder} from "../src/service/EchoServiceBuilder";
+import {EchoServiceInterceptor} from "../src/service/EchoServiceInterceptor";
+import {EchoRequest} from "../src/types/EchoRequest";
+import {EchoResponse} from "../src/types/EchoResponse";
+import {EchoError} from "../src/types/EchoError";
 
 class TestService extends EchoService {
     @GET("/path")

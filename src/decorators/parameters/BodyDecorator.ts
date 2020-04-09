@@ -1,9 +1,9 @@
-import EchoService from "../../service/EchoService";
+import {EchoService} from "../../service/EchoService";
 
 /**
  * Register a body parameter for a given method.
  * @constructor
  */
-export default function Body(): Function {
+export function Body(): Function {
     return EchoService._registerBodyParameter();
 }

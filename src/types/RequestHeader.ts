@@ -1,4 +1,4 @@
-interface RequestHeader {
+export interface RequestHeader {
 
     /**
      * Name of the header.
@@ -10,5 +10,3 @@ interface RequestHeader {
      */
     value: string;
 }
-
-export default RequestHeader;

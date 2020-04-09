@@ -1,12 +1,11 @@
 import * as nock from "nock";
 import * as parser from "fast-xml-parser";
-import EchoService from "../src/service/EchoService";
-import EchoServiceBuilder from "../src/service/EchoServiceBuilder";
-import GET from "../src/decorators/methods/GetDecorator";
-import EchoPromise from "../src/types/EchoPromise";
-import EchoPromiseStatus from "../src/types/EchoPromiseStatus";
-import EchoServiceConverter from "../src/service/EchoServiceConverter";
-import EchoResponse from "../src/types/EchoResponse";
+import {EchoService} from "../src/service/EchoService";
+import {GET} from "../src/decorators/methods/GetDecorator";
+import {EchoPromise} from "../src/types/EchoPromise";
+import {EchoServiceBuilder} from "../src/service/EchoServiceBuilder";
+import {EchoServiceConverter} from "../src/service/EchoServiceConverter";
+import {EchoResponse} from "../src/types/EchoResponse";
 
 class TestService extends EchoService {
     @GET("/path")

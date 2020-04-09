@@ -1,14 +1,16 @@
 {
     "name": "echofetch",
-    "version": "0.0.1-alpha-200409.1",
+    "version": "0.0.1",
     "description": "Typescript library for fetching data from JSON APIs",
-    "main": "dist/echofetch.umd.js",
-    "module": "dist/echofetch.es5.js",
+    "main": "dist/echofetch.common.js",
+    "browser": "dist/echofetch.umd.js",
+    "module": "dist/echofetch.esm.js",
     "typings": "dist/types/echofetch.d.ts",
     "files": [
         "dist"
     ],
     "scripts": {
+        "prebuild": "rimraf dist",
         "build": "tsc && rollup -c rollup.config.ts",
         "docs": "vuepress dev docs",
         "docs:build": "vuepress build docs",
@@ -27,10 +29,12 @@
         "fast-xml-parser": "^3.16.0",
         "jest": "^25.3.0",
         "nock": "^12.0.3",
+        "rimraf": "^3.0.2",
         "rollup": "^2.3.2",
         "rollup-plugin-commonjs": "^10.1.0",
         "rollup-plugin-json": "^4.0.0",
         "rollup-plugin-sourcemaps": "^0.5.0",
+        "rollup-plugin-terser": "^5.3.0",
         "rollup-plugin-typescript2": "^0.27.0",
         "ts-jest": "^25.3.1",
         "ts-node": "^8.8.1",

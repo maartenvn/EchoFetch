@@ -1,20 +1,20 @@
 import * as nock from "nock";
-import GET from "../src/decorators/methods/GetDecorator";
-import EchoPromise from "../src/types/EchoPromise";
-import EchoServiceBuilder from "../src/service/EchoServiceBuilder";
-import EchoService from "../src/service/EchoService";
-import Path from "../src/decorators/parameters/PathDecorator";
-import Query from "../src/decorators/parameters/QueryDecorator";
-import Header from "../src/decorators/parameters/HeaderDecorator";
-import Body from "../src/decorators/parameters/BodyDecorator";
-import POST from "../src/decorators/methods/PostDecorator";
-import PUT from "../src/decorators/methods/PutDecorator";
-import PATCH from "../src/decorators/methods/PatchDecorator";
-import DELETE from "../src/decorators/methods/DeleteDecorator";
-import HEAD from "../src/decorators/methods/HeadDecorator";
-import OPTIONS from "../src/decorators/methods/OptionsDecorator";
-import Queries from "../src/decorators/methods/QueriesDecorator";
-import Headers from "../src/decorators/methods/HeadersDecorator";
+import {EchoService} from "../src/service/EchoService";
+import {EchoPromise} from "../src/types/EchoPromise";
+import {GET} from "../src/decorators/methods/GetDecorator";
+import {POST} from "../src/decorators/methods/PostDecorator";
+import {PUT} from "../src/decorators/methods/PutDecorator";
+import {PATCH} from "../src/decorators/methods/PatchDecorator";
+import {DELETE} from "../src/decorators/methods/DeleteDecorator";
+import {HEAD} from "../src/decorators/methods/HeadDecorator";
+import {OPTIONS} from "../src/decorators/methods/OptionsDecorator";
+import {Path} from "../src/decorators/parameters/PathDecorator";
+import {Query} from "../src/decorators/parameters/QueryDecorator";
+import {Body} from "../src/decorators/parameters/BodyDecorator";
+import {Header} from "../src/decorators/parameters/HeaderDecorator";
+import {Queries} from "../src/decorators/methods/QueriesDecorator";
+import {Headers} from "../src/decorators/methods/HeadersDecorator";
+import {EchoServiceBuilder} from "../src/service/EchoServiceBuilder";
 
 class TestService extends EchoService {
 

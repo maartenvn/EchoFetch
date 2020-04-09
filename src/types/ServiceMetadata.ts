@@ -1,8 +1,8 @@
-import RequestMethod from "./RequestMethod";
-import RequestHeaders from "./RequestHeaders";
-import RequestQueries from "./RequestQueries";
+import {RequestMethod} from "./RequestMethod";
+import {RequestHeaders} from "./RequestHeaders";
+import {RequestQueries} from "./RequestQueries";
 
-class ServiceMetadata {
+export class ServiceMetadata {
 
     /**
      * EchoRequest method used when fetching from an API.
@@ -57,5 +57,3 @@ class ServiceMetadata {
      */
     requestQueryParameters: Map<number, string> = new Map();
 }
-
-export default ServiceMetadata;

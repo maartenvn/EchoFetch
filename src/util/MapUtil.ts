@@ -1,4 +1,4 @@
-class MapUtil {
+export class MapUtil {
 
     /**
      * Get a value from a map.
@@ -11,5 +11,3 @@ class MapUtil {
         return map.has(key) ? map.get(key)!! : defaultValue;
     }
 }
-
-export default MapUtil;
