@@ -1,6 +1,6 @@
 {
     "name": "echofetch",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Typescript library for fetching data from JSON APIs",
     "main": "dist/echofetch.common.js",
     "browser": "dist/echofetch.umd.js",
@@ -43,5 +43,8 @@
     },
     "dependencies": {
         "axios": "^0.19.2"
+    },
+    "optionalDependencies": {
+        "vue": "^2.0.0"
     }
 }

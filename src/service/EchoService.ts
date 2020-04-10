@@ -4,7 +4,7 @@ import {EchoServiceConverter} from "./EchoServiceConverter";
 import {EchoServiceBuilder} from "./EchoServiceBuilder";
 import {RequestMethod} from "../types/RequestMethod";
 import {MapUtil} from "../util/MapUtil";
-import {convertToEchoPromise, EchoPromise} from "../types/EchoPromise";
+import {EchoPromise} from "../types/EchoPromise";
 import {ServiceMetadata} from "../types/ServiceMetadata";
 import {RequestHeaders} from "../types/RequestHeaders";
 import {RequestQueries} from "../types/RequestQueries";
@@ -372,7 +372,7 @@ export class EchoService {
             echoRequest = interceptorRequest;
         }
 
-        let fetchPromise = convertToEchoPromise(new Promise<T>((resolve, reject) => {
+        let fetchPromise = new EchoPromise(new Promise<T>((resolve, reject) => {
 
             axios(echoRequest)
                 .then(response => {
@@ -410,6 +410,14 @@ export class EchoService {
                         }
                     }
 
+                    // Add support for Vue
+                    try {
+                        const Vue = require("vue").default;
+                        Vue.set(fetchPromise, "status", EchoPromiseStatus.SUCCESS);
+                        Vue.set(fetchPromise, "data", data);
+                        Vue.set(fetchPromise, "response", echoResponse);
+                    } catch(error) {}
+
                     // Set the EchoPromise fields.
                     fetchPromise.status = EchoPromiseStatus.SUCCESS;
                     fetchPromise.data = data;
@@ -439,6 +447,14 @@ export class EchoService {
                         echoError = interceptorError;
                     }
 
+                    // Add support for Vue
+                    try {
+                        const Vue = require("vue").default;
+                        Vue.set(fetchPromise, "status", EchoPromiseStatus.SUCCESS);
+                        Vue.set(fetchPromise, "error", error);
+                    } catch(error) {}
+
+                    // Set EchoPromise fields.
                     fetchPromise.status = EchoPromiseStatus.ERROR;
                     fetchPromise.error = echoError;
 
