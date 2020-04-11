@@ -97,7 +97,7 @@ export class EchoPromise<T> {
      * @returns A Promise for the completion of which ever callback is executed.
      */
     then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null) {
-        this.promise.then(onfulfilled, onrejected);
+        return this.promise.then(onfulfilled, onrejected);
     }
 
     /**
@@ -106,7 +106,7 @@ export class EchoPromise<T> {
      * @returns A Promise for the completion of the callback.
      */
     catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null) {
-        this.promise.catch();
+        return this.promise.catch();
     }
 
     /**
@@ -116,7 +116,7 @@ export class EchoPromise<T> {
      * @returns A Promise for the completion of the callback.
      */
     finally(onfinally?: (() => void) | undefined | null) {
-        this.promise.finally(onfinally);
+        return this.promise.finally(onfinally);
     }
 
     /**
