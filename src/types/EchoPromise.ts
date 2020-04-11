@@ -118,4 +118,12 @@ export class EchoPromise<T> {
     finally(onfinally?: (() => void) | undefined | null) {
         this.promise.finally(onfinally);
     }
+
+    /**
+     * Get the internal promise.
+     * @returns Internal promise used for extending a promise.
+     */
+    getPromise(): Promise<T> {
+        return this.promise;
+    }
 }
