@@ -188,12 +188,22 @@ export class EchoService {
         const metadata = this.getMetadataForMethod(methodName)
 
         let url = this.baseUrl;
+        let path = metadata.requestPath;
 
-        // Add slash to end when necessary.
-        url = url.endsWith("/") && !metadata.requestPath?.endsWith("/") ? `${url}/` : url;
+        // Add/remove slash to end when necessary.
+        if(url.endsWith("/")) {
+            if(path?.startsWith("/")) {
+                path?.substr(1);
+            }
+        }
+        else {
+            if(!path?.startsWith("/")) {
+                path = "/" + path;
+            }
+        }
 
         // Add the path of the given method.
-        url = url + metadata.requestPath
+        url = url + path
 
         // Replace all the path parameters.
         for (const parameterIndex of Array.from(metadata.requestPathParameters.keys())) {
