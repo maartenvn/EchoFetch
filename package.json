@@ -1,6 +1,6 @@
 {
     "name": "echofetch",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "Typescript library for fetching data from JSON APIs",
     "main": "dist/echofetch.common.js",
     "browser": "dist/echofetch.umd.js",

@@ -193,7 +193,7 @@ export class EchoService {
         // Add/remove slash to end when necessary.
         if(url.endsWith("/")) {
             if(path?.startsWith("/")) {
-                path?.substr(1);
+                path = path?.substr(1);
             }
         }
         else {
