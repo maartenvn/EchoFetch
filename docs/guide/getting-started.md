@@ -9,7 +9,7 @@ class TestService extends EchoService {
     
     @GET("/path")
     getData(): EchoPromise<string> {
-       return <EchoPromise<string>>{};
+       return {} as EchoPromise<string>;
    };
 }
 ```

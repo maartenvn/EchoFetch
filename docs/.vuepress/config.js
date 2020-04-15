@@ -27,8 +27,11 @@ module.exports = {
                     collapsable: false,
                     children: [
                         'guide/getting-started.md',
+                        'guide/decorators.md',
+                        'guide/echopromise.md',
                     ]
                 },
+
             ]
         }
     }
