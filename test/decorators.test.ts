@@ -580,8 +580,6 @@ describe("EchoFetch Decorator Tests", () => {
         const responsePromise = service.getWithFormFieldMultipart("value");
         const response = await responsePromise;
 
-        console.log(responsePromise.requireResponse().config.data)
-
         expect(responsePromise.requireResponse().config.headers["Content-Type"]).toContain("multipart/form-data");
         expect(response).toEqual(MOCK_RESULT_TEST);
     });

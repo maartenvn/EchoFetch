@@ -491,7 +491,12 @@ export class EchoService {
         // If Form Multipart: override the existing data with given formdata.
         if(metadata.isFormMultipart) {
             const formData = this.resolveFormData(methodName, methodArguments);
-            request.headers = {...request.headers, ...formData.getHeaders()}
+
+            // Necessary on Node.JS
+            // In browser Axios will automatically append the correct headers.
+            if(formData && formData.getHeaders instanceof Function) {
+                request.headers = {...request.headers, ...formData.getHeaders()}
+            }
             request.data = formData;
         }
 
