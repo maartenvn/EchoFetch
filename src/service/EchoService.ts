@@ -1,4 +1,5 @@
 import axios from "axios";
+import * as FormData from "form-data";
 import {EchoServiceInterceptor} from "./EchoServiceInterceptor";
 import {EchoServiceConverter} from "./EchoServiceConverter";
 import {EchoServiceBuilder} from "./EchoServiceBuilder";
@@ -110,6 +111,34 @@ export class EchoService {
     }
 
     /**
+     * Set if the request is FormUrlEncoded
+     * @param methodName Name of the method
+     * @param isFormUrlEncoded If the request is FormUrlEncoded.
+     * @private
+     */
+    private setMetadataFormUrlEncoded(methodName: string, isFormUrlEncoded: boolean) {
+        const metadata = this.getMetadataForMethod(methodName);
+
+        metadata.isFormUrlEncoded = isFormUrlEncoded;
+
+        this.metadataMap?.set(methodName, metadata)
+    }
+
+    /**
+     * Set if the request is FormMultipart
+     * @param methodName Name of the method
+     * @param isFormMultipart If the request is FormMultipart.
+     * @private
+     */
+    private setMetadataFormMultipart(methodName: string, isFormMultipart: boolean) {
+        const metadata = this.getMetadataForMethod(methodName);
+
+        metadata.isFormMultipart = isFormMultipart;
+
+        this.metadataMap?.set(methodName, metadata)
+    }
+
+    /**
      * Add a path parameter to the metadata
      * @param methodName Name of the method
      * @param pathParameter Name of the path parameter to replace
@@ -119,6 +148,21 @@ export class EchoService {
         const metadata = this.getMetadataForMethod(methodName);
 
         metadata.requestPathParameters.set(index, pathParameter);
+
+        this.metadataMap?.set(methodName, metadata)
+    }
+
+    /**
+     * Add a form field parameter to the metadata
+     * @param methodName Name of the method
+     * @param key Key of the form field parameter.
+     * @param isObject If the given parameter is an object of form fields or a single form field.
+     * @param index Index of the parameter in the method
+     */
+    private addMetadataFormFieldParameter(methodName: string, key: string, isObject: boolean,  index: number) {
+        const metadata = this.getMetadataForMethod(methodName);
+
+        metadata.requestFormFieldParameters.set(index, { key, isObject });
 
         this.metadataMap?.set(methodName, metadata)
     }
@@ -224,6 +268,81 @@ export class EchoService {
         }
 
         return url;
+    }
+
+    /**
+     * Build formdata, based on the given form fields.
+     * @param methodName Name of the method
+     * @param methodArgs Arguments passed to the method at runtime
+     */
+    private resolveFormData(methodName: string, methodArgs: Array<unknown>): FormData {
+        const metadata = this.getMetadataForMethod(methodName);
+        const formData = new FormData();
+
+        for(const formFieldIndex of Array.from(metadata.requestFormFieldParameters.keys()).reverse()) {
+            const formFieldData = metadata.requestFormFieldParameters.get(formFieldIndex);
+            const formFieldValue = methodArgs[formFieldIndex];
+
+            // Check for potential undefined.
+            if(!formFieldValue) {
+                throw new Error(`Undefined value for form field '${formFieldData?.isObject}'`);
+            }
+
+            // When object: add all the keys of the object to the formdata.
+            if(formFieldData?.isObject) {
+                const formFieldValueObject = formFieldValue as any;
+
+                for(const key of Object.keys(formFieldValueObject)) {
+                    formData.append(key, formFieldValueObject[key])
+                }
+            }
+            // When not object: add value to formdata with given key
+            else {
+                formData.append(formFieldData!!.key, formFieldValue as string)
+            }
+        }
+
+        return formData;
+    }
+
+    /**
+     * Build an URL encoded string based on the given form fields.
+     * Used when isFormUrlEncoded = true.
+     * @param methodName Name of the method
+     * @param methodArgs Arguments passed to the method at runtime
+     */
+    private resolveFormDataUrlEncoded(methodName: string, methodArgs: Array<unknown>): string {
+        const metadata = this.getMetadataForMethod(methodName);
+        const data = {} as any;
+
+        for(const formFieldIndex of Array.from(metadata.requestFormFieldParameters.keys()).reverse()) {
+            const formFieldData = metadata.requestFormFieldParameters.get(formFieldIndex);
+            const formFieldValue = methodArgs[formFieldIndex];
+
+            // Check for potential undefined.
+            if(!formFieldValue) {
+                throw new Error(`Undefined value for form field '${formFieldData?.isObject}'`);
+            }
+
+            // When object: add all the keys of the object to the formdata.
+            if(formFieldData?.isObject) {
+                const formFieldValueObject = formFieldValue as any;
+
+                for(const key of Object.keys(formFieldValueObject)) {
+                    data[key] = formFieldValueObject[key]
+                }
+            }
+            // When not object: add value to formdata with given key
+            else {
+                data[formFieldData!!.key] = formFieldValue as string
+            }
+        }
+
+        const dataEncoded = Object.keys(data)
+            .map((key: string) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
+            .join('&');
+
+        return dataEncoded;
     }
 
     /**
@@ -359,6 +478,21 @@ export class EchoService {
             method: metadata.requestMethod?.toString() as Method,
             headers: Object.fromEntries(headers.map(header => [header.name, header.value])),
             data: body
+        }
+
+        // If Form Url Encoded: override the existing data with the given encoded formdata & add "Content-Type"-header
+        if(metadata.isFormUrlEncoded) {
+            const formDataEncoded = this.resolveFormDataUrlEncoded(methodName, methodArguments);
+
+            request.headers["Content-Type"] = "application/x-www-form-urlencoded;charset=utf-8";
+            request.data = formDataEncoded;
+        }
+
+        // If Form Multipart: override the existing data with given formdata.
+        if(metadata.isFormMultipart) {
+            const formData = this.resolveFormData(methodName, methodArguments);
+            request.headers = {...request.headers, ...formData.getHeaders()}
+            request.data = formData;
         }
 
         let echoRequest: EchoRequest = request;
@@ -513,6 +647,26 @@ export class EchoService {
     }
 
     /**
+     * Register as Form URL Encoded for a given method.
+     * @private
+     */
+    static _registerFormUrlEncoded() {
+        return (target: EchoService, methodName: string, _: PropertyDescriptor) => {
+            target.setMetadataFormUrlEncoded(methodName, true);
+        };
+    }
+
+    /**
+     * Register as Form Multipart for a given method.
+     * @private
+     */
+    static _registerFormMultipart() {
+        return (target: EchoService, methodName: string, _: PropertyDescriptor) => {
+            target.setMetadataFormMultipart(methodName, true);
+        };
+    }
+
+    /**
      * Register a path parameter for a given method.
      * @param pathName Name of parameter
      * @private
@@ -520,6 +674,18 @@ export class EchoService {
     static _registerPathParameter(pathName: string): Function {
         return (target: EchoService, methodName: string, parameterIndex: number) => {
             target.addMetadataPathParameter(methodName, pathName, parameterIndex)
+        }
+    }
+
+    /**
+     * Register a form data field parameter for a given method.
+     * @param key Key of the form field parameter.
+     * @param isObject If the given parameter is an object of form fields or a single form field.
+     * @private
+     */
+    static _registerFormFieldParameter(key: string, isObject: boolean): Function {
+        return (target: EchoService, methodName: string, parameterIndex: number) => {
+            target.addMetadataFormFieldParameter(methodName, key, isObject, parameterIndex)
         }
     }
 

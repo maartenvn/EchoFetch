@@ -56,4 +56,21 @@ export class ServiceMetadata {
      *  Value: name of the query
      */
     requestQueryParameters: Map<number, string> = new Map();
+
+    /**
+     * EchoRequest form fields parameters.
+     *  Key: index of the parameter in the method.
+     *  Value: key of the form field parameter + if the parameter is an object of form fields or a single field
+     */
+    requestFormFieldParameters: Map<number, { key: string, isObject: boolean }> = new Map();
+
+    /**
+     * If the encoding of the data is application/x-www-form-urlencoded
+     */
+    isFormUrlEncoded: boolean = false;
+
+    /**
+     * If the encoding of the data is multipart/form-data
+     */
+    isFormMultipart: boolean = false;
 }

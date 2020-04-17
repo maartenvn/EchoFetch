@@ -1,6 +1,6 @@
 {
     "name": "echofetch",
-    "version": "0.0.6",
+    "version": "0.1.0",
     "description": "Typescript library for fetching data from JSON APIs",
     "main": "dist/echofetch.common.js",
     "browser": "dist/echofetch.umd.js",
@@ -24,6 +24,7 @@
     "license": "MIT",
     "private": false,
     "devDependencies": {
+        "@types/form-data": "^2.5.0",
         "@types/jest": "^25.2.1",
         "@types/node": "^13.11.0",
         "fast-xml-parser": "^3.16.0",
@@ -42,7 +43,8 @@
         "vuepress": "^1.4.0"
     },
     "dependencies": {
-        "axios": "^0.19.2"
+        "axios": "^0.19.2",
+        "form-data": "^3.0.0"
     },
     "optionalDependencies": {
         "vue": "^2.0.0"

@@ -10,6 +10,8 @@ export * from "./service/EchoServiceInterceptor";
  * Decorators
  */
 export * from "./decorators/methods/DeleteDecorator";
+export * from "./decorators/methods/FormMultipart";
+export * from "./decorators/methods/FormUrlEncodedDecorator";
 export * from "./decorators/methods/GetDecorator";
 export * from "./decorators/methods/HeadDecorator";
 export * from "./decorators/methods/HeadersDecorator";
@@ -20,6 +22,8 @@ export * from "./decorators/methods/PutDecorator";
 export * from "./decorators/methods/QueriesDecorator";
 
 export * from "./decorators/parameters/BodyDecorator";
+export * from "./decorators/parameters/FormFieldDecorator";
+export * from "./decorators/parameters/FormFieldObjectDecorator";
 export * from "./decorators/parameters/HeaderDecorator";
 export * from "./decorators/parameters/PathDecorator";
 export * from "./decorators/parameters/QueryDecorator";

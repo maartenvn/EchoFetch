@@ -15,6 +15,10 @@ import {Header} from "../src/decorators/parameters/HeaderDecorator";
 import {Queries} from "../src/decorators/methods/QueriesDecorator";
 import {Headers} from "../src/decorators/methods/HeadersDecorator";
 import {EchoServiceBuilder} from "../src/service/EchoServiceBuilder";
+import {FormField} from "../src/decorators/parameters/FormFieldDecorator";
+import {FormUrlEncoded} from "../src/decorators/methods/FormUrlEncodedDecorator";
+import {FormFieldObject} from "../src/decorators/parameters/FormFieldObjectDecorator";
+import {FormMultipart} from "../src/decorators/methods/FormMultipart";
 
 class TestService extends EchoService {
 
@@ -133,6 +137,42 @@ class TestService extends EchoService {
     public getWithHeadersAndHeaderParam(@Header("test3") test3: string): EchoPromise<string> {
         return <EchoPromise<string>>{}
     };
+
+    @FormUrlEncoded()
+    @GET("/path")
+    public getWithFormUrlEncoded(): EchoPromise<string> {
+        return <EchoPromise<string>>{}
+    };
+
+    @FormUrlEncoded()
+    @GET("/path")
+    public getWithFormField(@FormField("test") test: string): EchoPromise<string> {
+        return <EchoPromise<string>>{}
+    };
+
+    @FormUrlEncoded()
+    @GET("/path")
+    public getWithFormFieldMultiple(@FormField("test1") test1: string, @FormField("test2") test2: string, @FormField("a") a: number): EchoPromise<string> {
+        return <EchoPromise<string>>{}
+    };
+
+    @FormUrlEncoded()
+    @GET("/path")
+    public getWithFormFieldObject(@FormFieldObject() test: TestMultipleModel): EchoPromise<string> {
+        return <EchoPromise<string>>{}
+    }
+
+    @FormMultipart()
+    @GET("/path")
+    public getWithFormMultipart(): EchoPromise<string> {
+        return <EchoPromise<string>>{}
+    };
+
+    @FormMultipart()
+    @GET("/path")
+    public getWithFormFieldMultipart(@FormField("test") test: string): EchoPromise<string> {
+        return <EchoPromise<string>>{}
+    };
 }
 
 interface TestModel {
@@ -148,6 +188,11 @@ const MOCK_SERVER_URL = "http://host:port"
 
 const MOCK_RESULT_TEST: TestModel = {
     name: "Test"
+};
+
+const MOCK_RESULT_TEST_MULTIPLE: TestMultipleModel = {
+    test: "value",
+    number: 10
 };
 
 /**
@@ -442,6 +487,102 @@ describe("EchoFetch Decorator Tests", () => {
         const responsePromise = service.getWithHeadersAndHeaderParam("value3");
         const response = await responsePromise;
 
+        expect(response).toEqual(MOCK_RESULT_TEST);
+    });
+
+    test("Test '@FormUrlEncoded'", async () => {
+        const path = `/path`;
+
+        nock(MOCK_SERVER_URL, {
+            reqheaders: {
+                "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
+            }
+        }).get(path).reply(200, MOCK_RESULT_TEST);
+
+        const service = setupService();
+        const responsePromise = service.getWithFormUrlEncoded();
+        const response = await responsePromise;
+
+        expect(responsePromise.requireResponse().config.headers["Content-Type"]).toEqual("application/x-www-form-urlencoded;charset=utf-8");
+        expect(response).toEqual(MOCK_RESULT_TEST);
+    });
+
+    test("Test '@FormField' with '@FormUrlEncoded'", async () => {
+        const path = `/path`;
+
+        nock(MOCK_SERVER_URL, {
+            reqheaders: {
+                "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
+            }
+        }).get(path).reply(200, MOCK_RESULT_TEST);
+
+        const service = setupService();
+        const responsePromise = service.getWithFormField("value");
+        const response = await responsePromise;
+
+        expect(responsePromise.requireResponse().config.data).toEqual("test=value");
+        expect(response).toEqual(MOCK_RESULT_TEST);
+    });
+
+    test("Test '@FormField' with multiple values with '@FormUrlEncoded'", async () => {
+        const path = `/path`;
+
+        nock(MOCK_SERVER_URL, {
+            reqheaders: {
+                "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
+            }
+        }).get(path).reply(200, MOCK_RESULT_TEST);
+
+        const service = setupService();
+        const responsePromise = service.getWithFormFieldMultiple("value1", "value2", 1);
+        const response = await responsePromise;
+
+        expect(responsePromise.requireResponse().config.data).toEqual("test1=value1&test2=value2&a=1");
+        expect(response).toEqual(MOCK_RESULT_TEST);
+    });
+
+    test("Test '@FormFieldObject' with '@FormUrlEncoded'", async () => {
+        const path = `/path`;
+
+        nock(MOCK_SERVER_URL, {
+            reqheaders: {
+                "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
+            }
+        }).get(path).reply(200, MOCK_RESULT_TEST);
+
+        const service = setupService();
+        const responsePromise = service.getWithFormFieldObject(MOCK_RESULT_TEST_MULTIPLE);
+        const response = await responsePromise;
+
+        expect(responsePromise.requireResponse().config.data).toEqual("test=value&number=10");
+        expect(response).toEqual(MOCK_RESULT_TEST);
+    });
+
+    test("Test '@FormMultipart'", async () => {
+        const path = `/path`;
+
+        nock(MOCK_SERVER_URL).get(path).reply(200, MOCK_RESULT_TEST);
+
+        const service = setupService();
+        const responsePromise = service.getWithFormMultipart();
+        const response = await responsePromise;
+
+        expect(responsePromise.requireResponse().config.headers["Content-Type"]).toContain("multipart/form-data");
+        expect(response).toEqual(MOCK_RESULT_TEST);
+    });
+
+    test("Test '@FormField' with '@FormMultipart'", async () => {
+        const path = `/path`;
+
+        nock(MOCK_SERVER_URL).get(path).reply(200, MOCK_RESULT_TEST);
+
+        const service = setupService();
+        const responsePromise = service.getWithFormFieldMultipart("value");
+        const response = await responsePromise;
+
+        console.log(responsePromise.requireResponse().config.data)
+
+        expect(responsePromise.requireResponse().config.headers["Content-Type"]).toContain("multipart/form-data");
         expect(response).toEqual(MOCK_RESULT_TEST);
     });
 });
