@@ -67,5 +67,8 @@ typings/
 !.vscode/extensions.json
 .history
 
+### WebStorm ###
+.idea
+
 dist/
 build/
