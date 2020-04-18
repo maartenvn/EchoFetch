@@ -25,7 +25,8 @@ jobs:
         - echo "Testing ended..."
 
     - stage: publish
-      if: tag IS present
+      script:
+        - npm run build
       deploy:
         provider: npm
         email: $NPM_EMAIL
