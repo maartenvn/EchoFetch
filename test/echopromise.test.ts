@@ -194,7 +194,13 @@ describe("EchoFetch EchoPromise Tests", () => {
 
         const service = setupService();
 
-        expect(() => service.get().requireResponse()).toThrow("Response is undefined.");
+        try {
+            const responsePromise = service.get()
+
+            expect(() => responsePromise.requireResponse()).toThrow("Response is undefined.");
+
+            await responsePromise;
+        } catch (err) {}
     });
 
     test("Test 'requireError' when loading", async () => {
@@ -204,6 +210,12 @@ describe("EchoFetch EchoPromise Tests", () => {
 
         const service = setupService();
 
-        expect(() => service.get().requireError()).toThrow(new Error("Error is undefined."));
+        try {
+            const responsePromise = service.get()
+
+            expect(() => responsePromise.requireError()).toThrow(new Error("Error is undefined."));
+
+            await responsePromise;
+        } catch(err) {}
     });
 })
