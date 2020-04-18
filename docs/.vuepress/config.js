@@ -1,6 +1,7 @@
 module.exports = {
     title: "EchoFetch",
     description: "Decorator based HTTP client for browser & Node.JS based on Axios.",
+    base: "/EchoFetch/",
     themeConfig: {
         nav: [
             {
