@@ -23,3 +23,13 @@ jobs:
         - echo "Testing started..."
         - npm run test
         - echo "Testing ended..."
+
+    - stage: publish
+       if: tag IS present
+       deploy:
+         provider: npm
+         email: $NPM_EMAIL
+         api_key: $NPM_TOKEN
+         skip_cleanup: true
+         on:
+           tags: true
