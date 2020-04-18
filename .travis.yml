@@ -1,0 +1,36 @@
+language: node_js
+
+os: linux
+
+node_js:
+  - 12
+
+cache:
+  directories:
+    - node_modules
+
+install:
+  - npm install
+
+jobs:
+  include:
+    - stage: test
+      script:
+        - echo "Version Details:"
+        - node --version
+        - npm --version
+        - echo ""
+        - echo "Testing started..."
+        - npm run test
+        - echo "Testing ended..."
+
+    - stage: publish
+      script:
+        - npm run build
+      deploy:
+        provider: npm
+        email: $NPM_EMAIL
+        api_key: $NPM_TOKEN
+        skip_cleanup: true
+        on:
+          tags: true
