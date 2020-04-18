@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Getting started | EchoFetch</title>
+    <meta name="generator" content="VuePress 1.4.1">
+    
+    <meta name="description" content="Decorator based HTTP client for browser & Node.JS based on Axios.">
+    <link rel="preload" href="/assets/css/0.styles.1657c744.css" as="style"><link rel="preload" href="/assets/js/app.72c4bbd9.js" as="script"><link rel="preload" href="/assets/js/2.7f952988.js" as="script"><link rel="preload" href="/assets/js/9.00f74380.js" as="script"><link rel="prefetch" href="/assets/js/10.10a73bc3.js"><link rel="prefetch" href="/assets/js/11.01266c08.js"><link rel="prefetch" href="/assets/js/3.5b1ed0a4.js"><link rel="prefetch" href="/assets/js/4.fca74266.js"><link rel="prefetch" href="/assets/js/5.2f76157e.js"><link rel="prefetch" href="/assets/js/6.de374a86.js"><link rel="prefetch" href="/assets/js/7.706d1ed8.js"><link rel="prefetch" href="/assets/js/8.1f559509.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.1657c744.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">EchoFetch</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/guide/installation.html" class="nav-link">
+  Installation
+</a></div><div class="nav-item"><a href="/guide.html" class="nav-link">
+  Guide
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/guide/installation.html" class="nav-link">
+  Installation
+</a></div><div class="nav-item"><a href="/guide.html" class="nav-link">
+  Guide
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/" class="sidebar-link">Home</a></li><li><a href="/guide/installation.html" class="sidebar-link">Installation</a></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Essentials</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/guide/getting-started.html" class="active sidebar-link">Getting started</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/guide/getting-started.html#creating-a-service" class="sidebar-link">Creating a service</a></li><li class="sidebar-sub-header"><a href="/guide/getting-started.html#building-a-service" class="sidebar-link">Building a service</a></li></ul></li><li><a href="/guide/decorators.html" class="sidebar-link">Decorators</a></li><li><a href="/guide/echopromise.html" class="sidebar-link">EchoPromise</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="getting-started"><a href="#getting-started" class="header-anchor">#</a> Getting started</h1> <h2 id="creating-a-service"><a href="#creating-a-service" class="header-anchor">#</a> Creating a service</h2> <p>To fetch data from an API, you need to create a <em>class</em> that extends the <code>EchoService</code>-class:</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">class</span> <span class="token class-name">TestService</span> <span class="token keyword">extends</span> <span class="token class-name">EchoService</span> <span class="token punctuation">{</span>
+    
+    @<span class="token constant">GET</span><span class="token punctuation">(</span><span class="token string">&quot;/path&quot;</span><span class="token punctuation">)</span>
+    <span class="token function">getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> EchoPromise<span class="token operator">&lt;</span><span class="token builtin">string</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+       <span class="token keyword">return</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token keyword">as</span> EchoPromise<span class="token operator">&lt;</span><span class="token builtin">string</span><span class="token operator">&gt;</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>In this example we are using the <code>@GET(path: string)</code> decorator to specify that the given function will do a <em>GET</em> request
+on the given <code>/path</code> when the function is called.</p> <p>The empty return is there to prevent TypeScript errors that no result is specified.</p> <h3 id="no-implicit-return"><a href="#no-implicit-return" class="header-anchor">#</a> No implicit return</h3> <div class="custom-block warning"><p class="custom-block-title">WARNING</p> <p>This is not recommended, since no error will be given when any function in the project returns no value.</p></div> <p>You can add <code>&quot;noImplicitReturns&quot;: false</code> to your <em>tsconfig.json</em> file, if you want to create a function without return.</p> <p><em>tsconfig.json</em></p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+    <span class="token property">&quot;compilerOptions&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;target&quot;</span><span class="token operator">:</span> <span class="token string">&quot;es5&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;module&quot;</span><span class="token operator">:</span> <span class="token string">&quot;es2015&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;moduleResolution&quot;</span><span class="token operator">:</span> <span class="token string">&quot;node&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;strict&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;experimentalDecorators&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;noImplicitReturns&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span>
+   <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">class</span> <span class="token class-name">TestService</span> <span class="token keyword">extends</span> <span class="token class-name">EchoService</span> <span class="token punctuation">{</span>
+    
+    @<span class="token constant">GET</span><span class="token punctuation">(</span><span class="token string">&quot;/path&quot;</span><span class="token punctuation">)</span>
+    <span class="token function">getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> EchoPromise<span class="token operator">&lt;</span><span class="token builtin">string</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="building-a-service"><a href="#building-a-service" class="header-anchor">#</a> Building a service</h2> <p>In order to use a service, you need to build an instance of that service using the <code>EchoServiceBuilder</code>.</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">const</span> service <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">EchoServiceBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">setBaseUrl</span><span class="token punctuation">(</span><span class="token string">&quot;http://localhost:3000&quot;</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span>TestService<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>Use <code>.setBaseUrl(string: string)</code> to set the prefix of the url for every function inside the service.</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/guide/installation.html" class="prev">
+        Installation
+      </a></span> <span class="next"><a href="/guide/decorators.html">
+        Decorators
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.72c4bbd9.js" defer></script><script src="/assets/js/2.7f952988.js" defer></script><script src="/assets/js/9.00f74380.js" defer></script>
+  </body>
+</html>
