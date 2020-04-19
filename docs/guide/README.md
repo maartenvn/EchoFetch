@@ -1,7 +1,15 @@
-# Introduction
+
+<p align="center">
+
+# EchoFetch
 
 EchoFetch is a decorator based HTTP client for browser & Node.JS based on Axios. It has been inspired by the Java library *RetroFit*.
 EchoFetch will obtain the data from an API using a decorator based system.
+</p>
+
+## [Documentation](https://maartenvn.github.io/EchoFetch/)
+
+You can find the full documentation here: [Documentation](https://maartenvn.github.io/EchoFetch/)
 
 ## How does it work
 
