@@ -27,6 +27,8 @@ npm install echofetch --save
 yarn add echofetch
 ```
 
+Whats next: [Build Setup](https://maartenvn.github.io/EchoFetch/guide/installation.html#build-setup)
+
 ## Simple usage
 
 ```typescript
