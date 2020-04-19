@@ -44,3 +44,5 @@ service.getData()
         .then((data: string) => console.log(data))
         .catch((error: EchoError) => console.error(error))
 ```
+
+More examples & documentation: [Documentation](https://maartenvn.github.io/EchoFetch/)
