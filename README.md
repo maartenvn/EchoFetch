@@ -26,3 +26,21 @@ npm install echofetch --save
 ```
 yarn add echofetch
 ```
+
+## Simple usage
+
+```typescript
+class TestService extends EchoService {
+    
+    @GET("/path")
+    getData(): EchoPromise<string> {};
+}
+
+const service = new EchoServiceBuilder()
+            .setBaseUrl("https://localhost:3000")
+            .build(TestService);
+
+service.getData()
+        .then((data: string) => console.log(data))
+        .catch((error: EchoError) => console.error(error))
+```
