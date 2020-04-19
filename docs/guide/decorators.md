@@ -52,7 +52,7 @@ Can also be used in conjunction with [`@Header`](#header-name-string)
     "test2": "value2"
 })
 public getWithHeaders(): EchoPromise<string> {
-    return <EchoPromise<string>>{}
+    return {} as EchoPromise<string>;
 };
 ```
 
@@ -75,10 +75,39 @@ Can also be used in conjunction with [`@Query`](#query-name-string)
     "test2": "value2"
 })
 public getWithQueries(): EchoPromise<string> {
-    return <EchoPromise<string>>{}
+    return {} as EchoPromise<string>;
 };
 ```
 
+### `@FormUrlEncoded()`
+Will encode all the passed `FormField` parameters as an URL string.
+Will provide the header: `Content-Type: application/x-www-form-urlencoded`
+All parameters with @FormField will be added to the encoded data string.
+
+A possible result for 2 FormFields (test1 & test2) could be:
+
+data: `test1=value1&test2=value2`
+
+```typescript
+@FormUrlEncoded()
+@GET("/path")
+public getWithFormField(@FormField("test") test: string): EchoPromise<string> {
+    return {} as EchoPromise<string>;
+};
+```
+
+### `@FormMultipart()`
+Will encode all the passed `FormField` parameters as a `FormData` object.
+Will provide the header `Content-Type: multipart/form-data`
+All parameters with @FormField will be added to FormData object.
+
+```typescript
+@FormMultipart()
+@GET("/path")
+public getWithFormFieldMultipart(@FormField("test") test: string): EchoPromise<string> {
+    return {} as EchoPromise<string>;
+};
+```
 
 ## Parameter Decorators
 
@@ -115,7 +144,7 @@ Multiple query parameters van be specified and will be chained together into a c
 ```typescript
 @GET("/path")
 public getWithQueryParam(@Query("test") test: string): EchoPromise<string> {
-        return <EchoPromise<string>>{}
+    return {} as EchoPromise<string>;
 };
 ```
 
@@ -148,5 +177,29 @@ Multiple header parameters van be specified.
 @GET("/path")
 public getWithHeader(@Header("test") test: string): EchoPromise<string> {
     return {} as EchoPromise<string>;
+};
+```
+
+### `@FormField(name: string)`
+
+Will provide a form field to the method when used in conjunction with [`@FormUrlEncoded()`](#formurlencoded)
+or [`@FormMultipart()`](#formmultipart)
+
+Will create a `FormData`-object with key-value: *test*:
+```typescript
+@FormMultipart()
+@GET("/path")
+public getWithFormFieldMultipart(@FormField("test") test: string): EchoPromise<string> {
+    return {} as EchoPromise<string>;
+};
+```
+
+Will create a data string with key-values: *test1* & *test2*:
+Example: `test1=value1&test2=value2`
+```typescript
+@FormUrlEncoded()
+@GET("/path")
+public getWithFormFieldMultiple(@FormField("test1") test1: string, @FormField("test2") test2: string, @FormField("a") a: number): EchoPromise<string> {
+    return <EchoPromise<string>>{}
 };
 ```

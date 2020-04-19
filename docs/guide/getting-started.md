@@ -55,8 +55,29 @@ In order to use a service, you need to build an instance of that service using t
 
 ```typescript
 const service = new EchoServiceBuilder()
-            .setBaseUrl("http://localhost:3000")
+            .setBaseUrl("https://localhost:3000")
             .build(TestService);
 ```
 
 Use `.setBaseUrl(string: string)` to set the prefix of the url for every function inside the service. 
+
+## Using a service
+Once a service is created you can simply call the members of the service:
+
+```typescript
+service.getData()
+        .then((data: string) => console.log(data))
+        .catch((error: EchoError) => console.error(error))
+```
+
+Or using **async/await**:
+
+```typescript
+try {
+    const data: string = await service.getData();
+
+    console.log(data);
+} catch(error: EchoError) {
+    console.error(error)
+}
+```

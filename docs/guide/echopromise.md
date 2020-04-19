@@ -43,3 +43,39 @@ This way you can use the result of a request in conjunction with frameworks such
 
 ## Reference
 
+### isLoading(): boolean
+
+If the request is currently loading/waiting for a response.
+
+### isSuccess(): boolean
+
+If the request succeeded/when the promise is `resolved`.
+
+### isError(): boolean
+
+If the request has failed/when the promise is `rejected`.
+
+### data?: T
+
+Data from a request that succeeded. Will be null when `isSuccess() === false`
+
+### response?: EchoResponse
+
+Full response (inherit from `AxiosResponse`) from the request. Will be null when `isSuccess() === false`
+
+### error?: EchoError
+
+Error object (inherit from `AxiosError`) from the request. Will be null when `isError() === false`
+
+### requireData(): T
+
+Same as [data](#data-t) but not an *Optional*. Will throw an error when `isSuccess() === false`
+
+### requireResponse(): EchoResponse
+
+Same as [response](#response-echoresponse) but not an *Optional*. Will throw an error when `isSuccess() === false`
+
+### requireError(): EchoResponse
+
+Same as [error](#error-echoerror) but not an *Optional*. Will throw an error when `isError() === false`
+
