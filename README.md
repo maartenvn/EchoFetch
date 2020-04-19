@@ -40,6 +40,33 @@ class TestService extends EchoService {
     
     @GET("/path")
     getData(): EchoPromise<string> {};
+
+    @GET("/path")
+    @Queries({
+        "searching": true
+    })
+    searchData(@Query("q") query: string): EchoPromise<string> {};
+   
+    @POST("/path")
+    @Headers({
+        "Authorization": "api-token"
+    })
+    createData(@Header("name") nameHeader: string, @Body() data: TestData): EchoPromise<void> {};
+
+    @PATCH("/path/{id}")
+    updateData(@Path("id") id: number, @Body() data: TestDataUpdate): EchoPromise<void> {};
+
+    @DELETE("/path")
+    deleteData(@Path("id") id: number): EchoPromise<void> {};
+
+    @PUT("/path/{id}")
+    putData(@Path("id") id: number, @Body() data: TestDataPut): EchoPromise<void> {};
+    
+    @FormMultipart()
+    uploadImage(@FormField("image") image: File): EchoPromise<string> {};
+    
+    @FormUrlEncoded()
+    submitForm(@FormField("username") username: string, @FormFieldObject() otherData: Data): EchoPromise<User> {};
 }
 
 const service = new EchoServiceBuilder()
