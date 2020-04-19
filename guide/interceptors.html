@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Interceptors | EchoFetch</title>
+    <meta name="generator" content="VuePress 1.4.1">
+    
+    <meta name="description" content="Decorator based HTTP client for browser & Node.JS based on Axios.">
+    <link rel="preload" href="/EchoFetch/assets/css/0.styles.8c50901d.css" as="style"><link rel="preload" href="/EchoFetch/assets/js/app.db0d4ccc.js" as="script"><link rel="preload" href="/EchoFetch/assets/js/2.7f952988.js" as="script"><link rel="preload" href="/EchoFetch/assets/js/12.e36f0a64.js" as="script"><link rel="prefetch" href="/EchoFetch/assets/js/10.85d390bc.js"><link rel="prefetch" href="/EchoFetch/assets/js/11.454bfeec.js"><link rel="prefetch" href="/EchoFetch/assets/js/13.85e7a3dd.js"><link rel="prefetch" href="/EchoFetch/assets/js/3.b8c48841.js"><link rel="prefetch" href="/EchoFetch/assets/js/4.fca74266.js"><link rel="prefetch" href="/EchoFetch/assets/js/5.9b6b925c.js"><link rel="prefetch" href="/EchoFetch/assets/js/6.de374a86.js"><link rel="prefetch" href="/EchoFetch/assets/js/7.6bc8626d.js"><link rel="prefetch" href="/EchoFetch/assets/js/8.408b33b8.js"><link rel="prefetch" href="/EchoFetch/assets/js/9.d4784028.js">
+    <link rel="stylesheet" href="/EchoFetch/assets/css/0.styles.8c50901d.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/EchoFetch/" class="home-link router-link-active"><!----> <span class="site-name">EchoFetch</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/EchoFetch/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/EchoFetch/guide/installation.html" class="nav-link">
+  Installation
+</a></div><div class="nav-item"><a href="/EchoFetch/guide.html" class="nav-link">
+  Guide
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/EchoFetch/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/EchoFetch/guide/installation.html" class="nav-link">
+  Installation
+</a></div><div class="nav-item"><a href="/EchoFetch/guide.html" class="nav-link">
+  Guide
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/EchoFetch/" class="sidebar-link">Home</a></li><li><a href="/EchoFetch/guide/installation.html" class="sidebar-link">Installation</a></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Essentials</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/EchoFetch/guide/getting-started.html" class="sidebar-link">Getting started</a></li><li><a href="/EchoFetch/guide/decorators.html" class="sidebar-link">Decorators</a></li><li><a href="/EchoFetch/guide/echopromise.html" class="sidebar-link">EchoPromise</a></li><li><a href="/EchoFetch/guide/interceptors.html" class="active sidebar-link">Interceptors</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/EchoFetch/guide/interceptors.html#creating-an-interceptor" class="sidebar-link">Creating an interceptor</a></li><li class="sidebar-sub-header"><a href="/EchoFetch/guide/interceptors.html#registering-an-interceptor" class="sidebar-link">Registering an interceptor</a></li></ul></li><li><a href="/EchoFetch/guide/converters.html" class="sidebar-link">Converters</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="interceptors"><a href="#interceptors" class="header-anchor">#</a> Interceptors</h1> <p>An interceptor can intercept the request, response &amp; error from an EchoFetch request.
+It requires the implementation of the following 3 methods:</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token comment">/**
+ * Called before sending every request.
+ * @param request
+ */</span>
+<span class="token function">onRequest</span><span class="token punctuation">(</span>request<span class="token operator">:</span> EchoRequest<span class="token punctuation">)</span><span class="token operator">:</span> EchoRequest<span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * Called after every successful response.
+ * @param response
+ */</span>
+<span class="token function">onResponse</span><span class="token punctuation">(</span>response<span class="token operator">:</span> EchoResponse<span class="token punctuation">)</span><span class="token operator">:</span> EchoResponse<span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * Called after every failed response.
+ * @param error
+ */</span>
+<span class="token function">onError</span><span class="token punctuation">(</span>error<span class="token operator">:</span> EchoError<span class="token punctuation">)</span><span class="token operator">:</span> EchoError<span class="token punctuation">;</span>
+</code></pre></div><p>The diagram of when a specific method of an interceptor is called looks like this:</p> <p><img src="/img/interceptor_diagram.png" alt="Interceptor diagram"></p> <h2 id="creating-an-interceptor"><a href="#creating-an-interceptor" class="header-anchor">#</a> Creating an interceptor</h2> <p>You can create an interceptor by implementing the interface <code>EchoServiceInterceptor</code></p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">TestInterceptor</span> <span class="token keyword">implements</span> <span class="token class-name">EchoServiceInterceptor</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">/**
+     * Called before sending every request.
+     * @param request
+     */</span>
+    <span class="token function">onRequest</span><span class="token punctuation">(</span>request<span class="token operator">:</span> EchoRequest<span class="token punctuation">)</span><span class="token operator">:</span> EchoRequest <span class="token punctuation">{</span>
+        <span class="token comment">// Add extra headers to every request.</span>
+        request<span class="token punctuation">.</span>headers<span class="token punctuation">[</span><span class="token string">&quot;test1&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">&quot;interceptor-value1&quot;</span><span class="token punctuation">;</span>
+        request<span class="token punctuation">.</span>headers<span class="token punctuation">[</span><span class="token string">&quot;test2&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">&quot;interceptor-value2&quot;</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> request<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token comment">/**
+     * Called after every successful response.
+     * @param response
+     */</span>
+    <span class="token function">onResponse</span><span class="token punctuation">(</span>response<span class="token operator">:</span> EchoResponse<span class="token punctuation">)</span><span class="token operator">:</span> EchoResponse <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> response<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token comment">/**
+     * Called after every failed response.
+     * @param error
+     */</span>
+    <span class="token function">onError</span><span class="token punctuation">(</span>error<span class="token operator">:</span> EchoError<span class="token punctuation">)</span><span class="token operator">:</span> EchoError <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> response<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="registering-an-interceptor"><a href="#registering-an-interceptor" class="header-anchor">#</a> Registering an interceptor</h2> <p>When creating the service using the <code>EchoServiceBuilder</code>, you can add interceptors using:</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token function">addInterceptor</span><span class="token punctuation">(</span>interceptor<span class="token operator">:</span> EchoServiceInterceptor<span class="token punctuation">)</span>
+</code></pre></div><p>For example:</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">const</span> service <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">EchoServiceBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">setBaseUrl</span><span class="token punctuation">(</span><span class="token string">&quot;https://localhost:3000&quot;</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">addInterceptor</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">TestInterceptor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span>TestService<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>You can add an interceptor inline, without implementing all of its members:</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">const</span> service <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">EchoServiceBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">setBaseUrl</span><span class="token punctuation">(</span><span class="token string">&quot;https://localhost:3000&quot;</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">addInterceptor</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>EchoServiceInterceptor<span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+
+                <span class="token function">onRequest</span><span class="token punctuation">(</span>request<span class="token operator">:</span> EchoRequest<span class="token punctuation">)</span><span class="token operator">:</span> EchoRequest <span class="token punctuation">{</span>
+
+                    <span class="token comment">// Change the headers.</span>
+                    request<span class="token punctuation">.</span>headers<span class="token punctuation">[</span><span class="token string">&quot;test2&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">&quot;interceptor-value2&quot;</span><span class="token punctuation">;</span>
+                    request<span class="token punctuation">.</span>headers<span class="token punctuation">[</span><span class="token string">&quot;test4&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">&quot;interceptor-value4&quot;</span><span class="token punctuation">;</span>
+
+                    <span class="token keyword">return</span> request<span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span>TestService<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/EchoFetch/guide/echopromise.html" class="prev">
+        EchoPromise
+      </a></span> <span class="next"><a href="/EchoFetch/guide/converters.html">
+        Converters
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/EchoFetch/assets/js/app.db0d4ccc.js" defer></script><script src="/EchoFetch/assets/js/2.7f952988.js" defer></script><script src="/EchoFetch/assets/js/12.e36f0a64.js" defer></script>
+  </body>
+</html>
