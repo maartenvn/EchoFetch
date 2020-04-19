@@ -1,6 +1,6 @@
 {
     "name": "echofetch",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "description": "Typescript library for fetching data from JSON APIs",
     "main": "dist/echofetch.common.js",
     "browser": "dist/echofetch.umd.js",
@@ -16,8 +16,7 @@
         "docs:build": "vuepress build docs",
         "test": "jest --coverage",
         "test:clean": "jest --clearCache",
-        "test:watch": "jest --coverage --watch",
-        "testM": "ts-node test/Test.ts"
+        "test:watch": "jest --coverage --watch"
     },
     "repository": "git@github.com:maartenvn/EchoFetch.git",
     "author": "Maarten Van Neyghem",
