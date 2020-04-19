@@ -1,6 +1,10 @@
 
 # EchoFetch
 
+[![build status](https://img.shields.io/travis/maartenvn/echofetch)](https://travis-ci.org/maartenvn/EchoFetch)
+[![npm version](https://img.shields.io/npm/v/echofetch)](https://www.npmjs.com/echofetch)
+[![npm downloads](https://img.shields.io/npm/dm/echofetch)](http://npm-stat.com/charts.html?package=echofetch)
+
 EchoFetch is a decorator based HTTP client for browser & Node.JS based on Axios. It has been inspired by the Java library *RetroFit*.
 EchoFetch will obtain the data from an API using a decorator based system.
 
