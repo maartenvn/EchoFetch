@@ -25,6 +25,7 @@ jobs:
         - echo "Testing ended..."
 
     - stage: docs
+      if: branch IS master
       script:
         - npm run docs:build
       deploy:
@@ -37,6 +38,7 @@ jobs:
           branch: master
 
     - stage: publish
+      if: tag IS present
       script:
         - npm run build
       deploy:
