@@ -30,6 +30,8 @@ module.exports = {
                         'guide/getting-started.md',
                         'guide/decorators.md',
                         'guide/echopromise.md',
+                        'guide/interceptors.md',
+                        'guide/converters.md',
                     ]
                 },
 
