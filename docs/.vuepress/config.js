@@ -16,7 +16,7 @@ module.exports = {
 
             {
                 text: "Guide",
-                link: "/guide"
+                link: "/guide/getting-started"
             }
         ],
         sidebar: {
