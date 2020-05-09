@@ -11,12 +11,12 @@ module.exports = {
 
             {
                 text: "Installation",
-                link: "/guide/installation"
+                link: "/guide/installation.md"
             },
 
             {
                 text: "Guide",
-                link: "/guide/getting-started"
+                link: "/guide/getting-started.md"
             },
 
             {
