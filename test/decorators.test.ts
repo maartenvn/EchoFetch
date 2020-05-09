@@ -320,7 +320,7 @@ describe("EchoFetch Decorator Tests", () => {
         const responsePromise = service.getWithQueryParam(query);
         const response = await responsePromise;
 
-        expect(responsePromise.response?.config.url).toEqual(`${MOCK_SERVER_URL}${path}`);
+        expect(response).toEqual(MOCK_RESULT_TEST);
     });
 
     test("Test '@Query' decorator with multiple queries.", async () => {
@@ -334,7 +334,7 @@ describe("EchoFetch Decorator Tests", () => {
         const responsePromise = service.getWithQueryParamMultiple(query, queryId);
         const response = await responsePromise;
 
-        expect(responsePromise.response?.config.url).toEqual(`${MOCK_SERVER_URL}${path}`);
+        expect(response).toEqual(MOCK_RESULT_TEST);
     });
 
     test("Test '@Header' decorator with single header.", async () => {
@@ -438,7 +438,6 @@ describe("EchoFetch Decorator Tests", () => {
         const responsePromise = service.getWithQueries();
         const response = await responsePromise;
 
-        expect(responsePromise.response?.config.url).toEqual(`${MOCK_SERVER_URL}${path}`);
         expect(response).toEqual(MOCK_RESULT_TEST);
     });
 
@@ -451,7 +450,6 @@ describe("EchoFetch Decorator Tests", () => {
         const responsePromise = service.getWithQueriesAndQueryParam("value3");
         const response = await responsePromise;
 
-        expect(responsePromise.response?.config.url).toEqual(`${MOCK_SERVER_URL}${path}`);
         expect(response).toEqual(MOCK_RESULT_TEST);
     });
 
