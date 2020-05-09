@@ -17,7 +17,12 @@ module.exports = {
             {
                 text: "Guide",
                 link: "/guide/getting-started"
-            }
+            },
+
+            {
+                text: "Github",
+                link: "https://github.com/maartenvn/EchoFetch/"
+            },
         ],
         sidebar: {
             "/": [
