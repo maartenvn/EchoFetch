@@ -25,7 +25,7 @@ jobs:
         - echo "Testing ended..."
 
     - stage: docs
-      if: branch IS master
+      if: branch = master
       script:
         - npm run docs:build
       deploy:
