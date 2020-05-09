@@ -256,17 +256,6 @@ export class EchoService {
             url = url.replace(`{${parameterName}}`, String(methodArgs[parameterIndex]));
         }
 
-        // Add the query parameters.
-        const queries = this.resolveQueries(methodName, methodArgs);
-
-        if (queries.length > 0) {
-            const queriesString = queries
-                .map(q => String(encodeURIComponent(q.name) + "=" + encodeURIComponent(q.value)))
-                .join("&");
-
-            url = url + "?" + queriesString;
-        }
-
         return url;
     }
 
@@ -472,11 +461,15 @@ export class EchoService {
         const url = this.resolveUrl(methodName, methodArguments);
         const headers = this.resolveHeaders(methodName, methodArguments);
         const body = this.resolveBody(methodName, methodArguments);
+        const query = this.resolveQueries(methodName, methodArguments);
 
         const request: AxiosRequestConfig = {
             url,
             method: metadata.requestMethod?.toString() as Method,
             headers: Object.fromEntries(headers.map(header => [header.name, header.value])),
+            params: query.reduce(
+                (object, query) => Object.assign(object, { [query.name]: query.value }), {}
+            ),
             data: body
         }
 
