@@ -44,8 +44,5 @@
     "dependencies": {
         "axios": "^0.19.2",
         "form-data": "^3.0.0"
-    },
-    "optionalDependencies": {
-        "vue": "^2.0.0"
     }
 }
