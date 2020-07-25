@@ -7,6 +7,7 @@ const pkg = require("./package.json")
 
 export default {
     input: `src/echofetch.ts`,
+    external: ["vue"],
     output: [
         {file: pkg.main, format: "cjs", sourcemap: true},
         {file: pkg.module, format: "esm", sourcemap: true},
@@ -20,7 +21,9 @@ export default {
         typescript({useTsconfigDeclarationDir: true}),
 
         // Allow bundling cjs modules
-        commonjs(),
+        commonjs({
+            ignore: ["vue"],
+        }),
 
         // Resolve source maps to the original source
         sourceMaps(),
