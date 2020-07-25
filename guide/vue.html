@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Vue | EchoFetch</title>
+    <meta name="generator" content="VuePress 1.5.2">
+    
+    <meta name="description" content="Decorator based HTTP client for browser & Node.JS based on Axios.">
+    <link rel="preload" href="/EchoFetch/assets/css/0.styles.9aa2ab10.css" as="style"><link rel="preload" href="/EchoFetch/assets/js/app.0fe5812b.js" as="script"><link rel="preload" href="/EchoFetch/assets/js/2.a9e5c0d9.js" as="script"><link rel="preload" href="/EchoFetch/assets/js/13.e7fc81a7.js" as="script"><link rel="prefetch" href="/EchoFetch/assets/js/10.14fdbfc9.js"><link rel="prefetch" href="/EchoFetch/assets/js/11.4e51521c.js"><link rel="prefetch" href="/EchoFetch/assets/js/12.b6aae0e9.js"><link rel="prefetch" href="/EchoFetch/assets/js/3.d8a31682.js"><link rel="prefetch" href="/EchoFetch/assets/js/4.7d5f245c.js"><link rel="prefetch" href="/EchoFetch/assets/js/5.5b1c7cb6.js"><link rel="prefetch" href="/EchoFetch/assets/js/6.5965f162.js"><link rel="prefetch" href="/EchoFetch/assets/js/7.0d0fb798.js"><link rel="prefetch" href="/EchoFetch/assets/js/8.2696fbee.js"><link rel="prefetch" href="/EchoFetch/assets/js/9.7f5b3da2.js">
+    <link rel="stylesheet" href="/EchoFetch/assets/css/0.styles.9aa2ab10.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/EchoFetch/" class="home-link router-link-active"><!----> <span class="site-name">EchoFetch</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/EchoFetch/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/EchoFetch/guide/installation.html" class="nav-link">
+  Installation
+</a></div><div class="nav-item"><a href="/EchoFetch/guide/getting-started.html" class="nav-link">
+  Guide
+</a></div><div class="nav-item"><a href="https://github.com/maartenvn/EchoFetch/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/EchoFetch/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/EchoFetch/guide/installation.html" class="nav-link">
+  Installation
+</a></div><div class="nav-item"><a href="/EchoFetch/guide/getting-started.html" class="nav-link">
+  Guide
+</a></div><div class="nav-item"><a href="https://github.com/maartenvn/EchoFetch/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/EchoFetch/" aria-current="page" class="sidebar-link">Home</a></li><li><a href="/EchoFetch/guide/installation.html" class="sidebar-link">Installation</a></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Essentials</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/EchoFetch/guide/getting-started.html" class="sidebar-link">Getting started</a></li><li><a href="/EchoFetch/guide/decorators.html" class="sidebar-link">Decorators</a></li><li><a href="/EchoFetch/guide/echopromise.html" class="sidebar-link">EchoPromise</a></li><li><a href="/EchoFetch/guide/interceptors.html" class="sidebar-link">Interceptors</a></li><li><a href="/EchoFetch/guide/converters.html" class="sidebar-link">Converters</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Framework integration</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/EchoFetch/guide/vue.html" aria-current="page" class="active sidebar-link">Vue</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/EchoFetch/guide/vue.html#templates" class="sidebar-link">Templates</a></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="vue"><a href="#vue" class="header-anchor">#</a> Vue</h1> <p>EchoFetch integrates very nicely with Vue, since it was written with Vue in mind.
+EchoFetch supports native Vue Reactivity on the EchoPromise object, allowing easy displaying of state.</p> <h2 id="templates"><a href="#templates" class="header-anchor">#</a> Templates</h2> <p>You can use the EchoPromise object as result from a service function inside Vue templates.
+The Vue renderer will automatically re-render the template when the EchoPromise changes:</p> <div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token comment">&lt;!-- Loading --&gt;</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">v-if</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>result.isLoading()<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+            Loading...
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+        
+        <span class="token comment">&lt;!-- Success --&gt;</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">v-else-if</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>result.isSuccess()<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+            {{ result.data }}
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+
+        <span class="token comment">&lt;!-- Error --&gt;</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">v-else-if</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>result.isError()<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+            
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>
+                An error has occurred.
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+
+            {{ result.error.message }}
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Component<span class="token punctuation">,</span> Vue <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;vue-property-decorator&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> TestService <span class="token keyword">from</span> <span class="token string">&quot;./services/TestService&quot;</span><span class="token punctuation">;</span>
+
+@Component
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">Test</span> <span class="token keyword">extends</span> <span class="token class-name">Vue</span> <span class="token punctuation">{</span>
+    
+    <span class="token comment">/**
+     * The only necessary property to display the data.
+     * No complex watcher or computed property structure necessary.
+     * This makes creating complex templates with multiple data properties a breeze.
+     */</span> 
+    result<span class="token operator">:</span> EchoPromise<span class="token operator">&lt;</span>string<span class="token operator">&gt;</span> <span class="token operator">=</span> TestService<span class="token punctuation">.</span><span class="token function">getTest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p>This way it is easy to handle all the different states from a request.
+It does not require any watchers or computed properties as would be the case with regular Axios usage.
+This makes creating complex templates with multiple data properties a breeze.</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/EchoFetch/guide/converters.html" class="prev">
+        Converters
+      </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/EchoFetch/assets/js/app.0fe5812b.js" defer></script><script src="/EchoFetch/assets/js/2.a9e5c0d9.js" defer></script><script src="/EchoFetch/assets/js/13.e7fc81a7.js" defer></script>
+  </body>
+</html>
