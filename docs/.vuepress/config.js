@@ -39,7 +39,13 @@ module.exports = {
                         'guide/converters.md',
                     ]
                 },
-
+                {
+                    title: "Framework integration",
+                    collapsable: false,
+                    children: [
+                        'guide/vue.md',
+                    ]
+                },
             ]
         }
     }
