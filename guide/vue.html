@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Vue | EchoFetch</title>
-    <meta name="generator" content="VuePress 1.5.2">
+    <meta name="generator" content="VuePress 1.5.4">
     
     <meta name="description" content="Decorator based HTTP client for browser & Node.JS based on Axios.">
-    <link rel="preload" href="/EchoFetch/assets/css/0.styles.9aa2ab10.css" as="style"><link rel="preload" href="/EchoFetch/assets/js/app.21a95aff.js" as="script"><link rel="preload" href="/EchoFetch/assets/js/2.a9e5c0d9.js" as="script"><link rel="preload" href="/EchoFetch/assets/js/13.e7fc81a7.js" as="script"><link rel="prefetch" href="/EchoFetch/assets/js/10.14fdbfc9.js"><link rel="prefetch" href="/EchoFetch/assets/js/11.4e51521c.js"><link rel="prefetch" href="/EchoFetch/assets/js/12.b6aae0e9.js"><link rel="prefetch" href="/EchoFetch/assets/js/3.d8a31682.js"><link rel="prefetch" href="/EchoFetch/assets/js/4.7d5f245c.js"><link rel="prefetch" href="/EchoFetch/assets/js/5.5b1c7cb6.js"><link rel="prefetch" href="/EchoFetch/assets/js/6.5965f162.js"><link rel="prefetch" href="/EchoFetch/assets/js/7.0d0fb798.js"><link rel="prefetch" href="/EchoFetch/assets/js/8.2696fbee.js"><link rel="prefetch" href="/EchoFetch/assets/js/9.7f5b3da2.js">
-    <link rel="stylesheet" href="/EchoFetch/assets/css/0.styles.9aa2ab10.css">
+    <link rel="preload" href="/EchoFetch/assets/css/0.styles.1c08bcd4.css" as="style"><link rel="preload" href="/EchoFetch/assets/js/app.5a1071eb.js" as="script"><link rel="preload" href="/EchoFetch/assets/js/2.3d26544e.js" as="script"><link rel="preload" href="/EchoFetch/assets/js/13.0364ef85.js" as="script"><link rel="prefetch" href="/EchoFetch/assets/js/10.8f9319cc.js"><link rel="prefetch" href="/EchoFetch/assets/js/11.20192587.js"><link rel="prefetch" href="/EchoFetch/assets/js/12.9809d062.js"><link rel="prefetch" href="/EchoFetch/assets/js/3.d8a31682.js"><link rel="prefetch" href="/EchoFetch/assets/js/4.5ed19beb.js"><link rel="prefetch" href="/EchoFetch/assets/js/5.cdd91b9e.js"><link rel="prefetch" href="/EchoFetch/assets/js/6.7d18551e.js"><link rel="prefetch" href="/EchoFetch/assets/js/7.60f3dc30.js"><link rel="prefetch" href="/EchoFetch/assets/js/8.946249a0.js"><link rel="prefetch" href="/EchoFetch/assets/js/9.4f78a6a3.js">
+    <link rel="stylesheet" href="/EchoFetch/assets/css/0.styles.1c08bcd4.css">
   </head>
   <body>
     <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/EchoFetch/" class="home-link router-link-active"><!----> <span class="site-name">EchoFetch</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/EchoFetch/" class="nav-link">
@@ -32,17 +32,17 @@ EchoFetch supports native Vue Reactivity on the EchoPromise object, allowing eas
 The Vue renderer will automatically re-render the template when the EchoPromise changes:</p> <div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
         <span class="token comment">&lt;!-- Loading --&gt;</span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">v-if</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>result.isLoading()<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">v-if</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>result.isLoading()<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
             Loading...
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
         
         <span class="token comment">&lt;!-- Success --&gt;</span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">v-else-if</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>result.isSuccess()<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">v-else-if</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>result.isSuccess()<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
             {{ result.data }}
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
 
         <span class="token comment">&lt;!-- Error --&gt;</span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">v-else-if</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>result.isError()<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">v-else-if</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>result.isError()<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
             
             <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>
                 An error has occurred.
@@ -53,7 +53,7 @@ The Vue renderer will automatically re-render the template when the EchoPromise 
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
 
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ts<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>ts<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
 <span class="token keyword">import</span> <span class="token punctuation">{</span> Component<span class="token punctuation">,</span> Vue <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;vue-property-decorator&quot;</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> TestService <span class="token keyword">from</span> <span class="token string">&quot;./services/TestService&quot;</span><span class="token punctuation">;</span>
 
@@ -75,6 +75,6 @@ This makes creating complex templates with multiple data properties a breeze.</p
       <a href="/EchoFetch/guide/converters.html" class="prev">
         Converters
       </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
-    <script src="/EchoFetch/assets/js/app.21a95aff.js" defer></script><script src="/EchoFetch/assets/js/2.a9e5c0d9.js" defer></script><script src="/EchoFetch/assets/js/13.e7fc81a7.js" defer></script>
+    <script src="/EchoFetch/assets/js/app.5a1071eb.js" defer></script><script src="/EchoFetch/assets/js/2.3d26544e.js" defer></script><script src="/EchoFetch/assets/js/13.0364ef85.js" defer></script>
   </body>
 </html>
