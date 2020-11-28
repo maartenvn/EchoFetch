@@ -1,48 +1,48 @@
 {
-    "name": "echofetch",
-    "version": "0.1.5",
-    "description": "Typescript library for fetching data from JSON APIs",
-    "main": "dist/echofetch.common.js",
-    "browser": "dist/echofetch.umd.js",
-    "module": "dist/echofetch.esm.js",
-    "typings": "dist/types/echofetch.d.ts",
-    "files": [
-        "dist"
-    ],
-    "scripts": {
-        "prebuild": "rimraf dist",
-        "build": "tsc && rollup -c rollup.config.ts",
-        "docs": "vuepress dev docs",
-        "docs:build": "vuepress build docs",
-        "test": "jest --coverage",
-        "test:clean": "jest --clearCache",
-        "test:watch": "jest --coverage --watch"
-    },
-    "repository": "git@github.com:maartenvn/EchoFetch.git",
-    "author": "Maarten Van Neyghem",
-    "license": "MIT",
-    "private": false,
-    "devDependencies": {
-        "@types/form-data": "^2.5.0",
-        "@types/jest": "^26.0.15",
-        "@types/node": "^14.14.10",
-        "fast-xml-parser": "^3.16.0",
-        "jest": "^26.6.3",
-        "nock": "^13.0.5",
-        "rimraf": "^3.0.2",
-        "rollup": "^2.33.3",
-        "rollup-plugin-commonjs": "^10.1.0",
-        "rollup-plugin-json": "^4.0.0",
-        "rollup-plugin-sourcemaps": "^0.6.3",
-        "rollup-plugin-terser": "^7.0.2",
-        "rollup-plugin-typescript2": "^0.29.0",
-        "ts-jest": "^26.4.4",
-        "ts-node": "^9.0.0",
-        "typescript": "^4.1.2",
-        "vuepress": "^1.7.1"
-    },
-    "dependencies": {
-        "axios": "^0.21.0",
-        "form-data": "^3.0.0"
-    }
+  "name": "echofetch",
+  "version": "0.1.6",
+  "description": "Typescript library for fetching data from JSON APIs",
+  "main": "dist/echofetch.common.js",
+  "browser": "dist/echofetch.umd.js",
+  "module": "dist/echofetch.esm.js",
+  "typings": "dist/types/echofetch.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "tsc && rollup -c rollup.config.ts",
+    "docs": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
+    "test": "jest --coverage",
+    "test:clean": "jest --clearCache",
+    "test:watch": "jest --coverage --watch"
+  },
+  "repository": "git@github.com:maartenvn/EchoFetch.git",
+  "author": "Maarten Van Neyghem",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "@types/form-data": "^2.5.0",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^14.14.10",
+    "fast-xml-parser": "^3.16.0",
+    "jest": "^26.6.3",
+    "nock": "^13.0.5",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.33.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-sourcemaps": "^0.6.3",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.29.0",
+    "ts-jest": "^26.4.4",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.1.2",
+    "vuepress": "^1.7.1"
+  },
+  "dependencies": {
+    "axios": "^0.21.0",
+    "form-data": "^3.0.0"
+  }
 }
