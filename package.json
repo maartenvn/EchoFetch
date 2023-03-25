@@ -42,7 +42,8 @@
     "vuepress": "^1.7.1"
   },
   "dependencies": {
-    "axios": "^0.21.0",
+    "@vespaiach/axios-fetch-adapter": "^0.3.1",
+    "axios": "^0.26.0",
     "form-data": "^3.0.0"
   }
 }

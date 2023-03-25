@@ -1,5 +1,6 @@
 import axios from "axios";
-import * as FormData from "form-data";
+import FormData from "form-data";
+import fetchAdapter from "@vespaiach/axios-fetch-adapter";
 import {EchoServiceInterceptor} from "./EchoServiceInterceptor";
 import {EchoServiceConverter} from "./EchoServiceConverter";
 import {EchoServiceBuilder} from "./EchoServiceBuilder";
@@ -159,10 +160,10 @@ export class EchoService {
      * @param isObject If the given parameter is an object of form fields or a single form field.
      * @param index Index of the parameter in the method
      */
-    private addMetadataFormFieldParameter(methodName: string, key: string, isObject: boolean,  index: number) {
+    private addMetadataFormFieldParameter(methodName: string, key: string, isObject: boolean, index: number) {
         const metadata = this.getMetadataForMethod(methodName);
 
-        metadata.requestFormFieldParameters.set(index, { key, isObject });
+        metadata.requestFormFieldParameters.set(index, {key, isObject});
 
         this.metadataMap?.set(methodName, metadata)
     }
@@ -235,13 +236,12 @@ export class EchoService {
         let path = metadata.requestPath;
 
         // Add/remove slash to end when necessary.
-        if(url.endsWith("/")) {
-            if(path?.startsWith("/")) {
+        if (url.endsWith("/")) {
+            if (path?.startsWith("/")) {
                 path = path?.substr(1);
             }
-        }
-        else {
-            if(!path?.startsWith("/")) {
+        } else {
+            if (!path?.startsWith("/")) {
                 path = "/" + path;
             }
         }
@@ -268,20 +268,20 @@ export class EchoService {
         const metadata = this.getMetadataForMethod(methodName);
         const formData = new FormData();
 
-        for(const formFieldIndex of Array.from(metadata.requestFormFieldParameters.keys()).reverse()) {
+        for (const formFieldIndex of Array.from(metadata.requestFormFieldParameters.keys()).reverse()) {
             const formFieldData = metadata.requestFormFieldParameters.get(formFieldIndex);
             const formFieldValue = methodArgs[formFieldIndex];
 
             // Check for potential undefined.
-            if(!formFieldValue) {
+            if (!formFieldValue) {
                 throw new Error(`Undefined value for form field '${formFieldData?.isObject}'`);
             }
 
             // When object: add all the keys of the object to the formdata.
-            if(formFieldData?.isObject) {
+            if (formFieldData?.isObject) {
                 const formFieldValueObject = formFieldValue as any;
 
-                for(const key of Object.keys(formFieldValueObject)) {
+                for (const key of Object.keys(formFieldValueObject)) {
                     formData.append(key, formFieldValueObject[key])
                 }
             }
@@ -304,20 +304,20 @@ export class EchoService {
         const metadata = this.getMetadataForMethod(methodName);
         const data = {} as any;
 
-        for(const formFieldIndex of Array.from(metadata.requestFormFieldParameters.keys()).reverse()) {
+        for (const formFieldIndex of Array.from(metadata.requestFormFieldParameters.keys()).reverse()) {
             const formFieldData = metadata.requestFormFieldParameters.get(formFieldIndex);
             const formFieldValue = methodArgs[formFieldIndex];
 
             // Check for potential undefined.
-            if(!formFieldValue) {
+            if (!formFieldValue) {
                 throw new Error(`Undefined value for form field '${formFieldData?.isObject}'`);
             }
 
             // When object: add all the keys of the object to the formdata.
-            if(formFieldData?.isObject) {
+            if (formFieldData?.isObject) {
                 const formFieldValueObject = formFieldValue as any;
 
-                for(const key of Object.keys(formFieldValueObject)) {
+                for (const key of Object.keys(formFieldValueObject)) {
                     data[key] = formFieldValueObject[key]
                 }
             }
@@ -465,29 +465,32 @@ export class EchoService {
 
         const request: AxiosRequestConfig = {
             url,
+            adapter: fetchAdapter,
             method: metadata.requestMethod?.toString() as Method,
             headers: Object.fromEntries(headers.map(header => [header.name, header.value])),
             params: query.reduce(
-                (object, query) => Object.assign(object, { [query.name]: query.value }), {}
+                (object, query) => Object.assign(object, {[query.name]: query.value}), {}
             ),
             data: body
         }
 
         // If Form Url Encoded: override the existing data with the given encoded formdata & add "Content-Type"-header
-        if(metadata.isFormUrlEncoded) {
+        if (metadata.isFormUrlEncoded) {
             const formDataEncoded = this.resolveFormDataUrlEncoded(methodName, methodArguments);
 
-            request.headers["Content-Type"] = "application/x-www-form-urlencoded;charset=utf-8";
+            if (request.headers) {
+                request.headers["Content-Type"] = "application/x-www-form-urlencoded;charset=utf-8";
+            }
             request.data = formDataEncoded;
         }
 
         // If Form Multipart: override the existing data with given formdata.
-        if(metadata.isFormMultipart) {
+        if (metadata.isFormMultipart) {
             const formData = this.resolveFormData(methodName, methodArguments);
 
             // Necessary on Node.JS
             // In browser Axios will automatically append the correct headers.
-            if(formData && formData.getHeaders instanceof Function) {
+            if (formData) {
                 request.headers = {...request.headers, ...formData.getHeaders()}
             }
             request.data = formData;
@@ -500,7 +503,7 @@ export class EchoService {
             const interceptor = this.interceptors[interceptorIndex];
 
             // Check if interceptor has the function
-            if(!interceptor.onRequest) {
+            if (!interceptor.onRequest) {
                 continue;
             }
 
@@ -526,7 +529,7 @@ export class EchoService {
                         const interceptor = this.interceptors[interceptorIndex];
 
                         // Check if interceptor has the function
-                        if(!interceptor.onResponse) {
+                        if (!interceptor.onResponse) {
                             continue;
                         }
 
@@ -558,7 +561,8 @@ export class EchoService {
                         Vue.set(fetchPromise, "status", EchoPromiseStatus.SUCCESS);
                         Vue.set(fetchPromise, "data", data);
                         Vue.set(fetchPromise, "response", echoResponse);
-                    } catch(error) {}
+                    } catch (error) {
+                    }
 
                     // Set the EchoPromise fields.
                     fetchPromise.status = EchoPromiseStatus.SUCCESS;
@@ -575,7 +579,7 @@ export class EchoService {
                         const interceptor = this.interceptors[interceptorIndex];
 
                         // Check if interceptor has the function
-                        if(!interceptor.onError) {
+                        if (!interceptor.onError) {
                             continue;
                         }
 
@@ -594,7 +598,8 @@ export class EchoService {
                         const Vue = require("vue").default;
                         Vue.set(fetchPromise, "status", EchoPromiseStatus.SUCCESS);
                         Vue.set(fetchPromise, "error", error);
-                    } catch(error) {}
+                    } catch (error) {
+                    }
 
                     // Set EchoPromise fields.
                     fetchPromise.status = EchoPromiseStatus.ERROR;
