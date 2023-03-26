@@ -12,8 +12,6 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "tsc && rollup -c rollup.config.ts",
-    "docs": "vuepress dev docs",
-    "docs:build": "vuepress build docs",
     "test": "jest --coverage",
     "test:clean": "jest --clearCache",
     "test:watch": "jest --coverage --watch"
@@ -38,8 +36,7 @@
     "rollup-plugin-typescript2": "^0.29.0",
     "ts-jest": "^26.4.4",
     "ts-node": "^9.0.0",
-    "typescript": "^4.1.2",
-    "vuepress": "^1.7.1"
+    "typescript": "^4.1.2"
   },
   "dependencies": {
     "@vespaiach/axios-fetch-adapter": "^0.3.1",
