@@ -1,6 +1,6 @@
 {
   "name": "echofetch",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Typescript library for fetching data from JSON APIs",
   "main": "dist/echofetch.common.js",
   "browser": "dist/echofetch.umd.js",
@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@vespaiach/axios-fetch-adapter": "^0.3.1",
-    "axios": "^0.26.0",
+    "axios": "^0.27.2",
     "form-data": "^3.0.0"
   }
 }
