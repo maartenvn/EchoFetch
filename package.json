@@ -16,8 +16,8 @@
     "test:clean": "jest --clearCache",
     "test:watch": "jest --coverage --watch"
   },
-  "repository": "git@github.com:maartenvn/EchoFetch.git",
-  "author": "Maarten Van Neyghem",
+  "repository": "git@github.com:DeruytterA/EchoFetch.git",
+  "author": "Arthur Deruytter",
   "license": "MIT",
   "private": false,
   "devDependencies": {
