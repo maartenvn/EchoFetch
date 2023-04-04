@@ -19,6 +19,9 @@
         "emitDecoratorMetadata": true,
         "typeRoots": [
             "node_modules/@types"
+        ],
+        "types": [
+            "webpack-env"
         ]
     },
     "include": [

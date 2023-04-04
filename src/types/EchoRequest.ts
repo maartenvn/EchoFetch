@@ -1,3 +1,4 @@
-import {AxiosRequestConfig} from "axios";
-
-export interface EchoRequest extends AxiosRequestConfig {}
+export interface EchoRequest extends RequestInit{
+  url: string,
+  headers: any
+}

@@ -1,3 +1,1 @@
-import {AxiosError, AxiosResponse} from "axios";
-
-export interface EchoResponse extends AxiosResponse{}
+export interface EchoResponse extends Response{}
